@@ -63,10 +63,12 @@ public class Prescription {
                 if (validPrescription()) {
                         generateID();
                         writePrescription();
+                        return true;
                 } else {
-                        throw new IllegalArgumentException("Invalid prescription values");
+                        return false;
+                        //throw new IllegalArgumentException("Invalid prescription values");
                 }
-                return validPrescription();
+                //return validPrescription();
         }
 
         // checks if passed in firstName is has a minimum of 4 characters and a maximum
@@ -151,7 +153,7 @@ public class Prescription {
         // generated string matches an already used ID, if it does not it sets it to
         // prescID
         private void generateID() {
-                String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+                String characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
                 Random random = new Random();
                 StringBuilder newID;
                 do {
