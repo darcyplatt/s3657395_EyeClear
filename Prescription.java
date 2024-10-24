@@ -9,7 +9,6 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
-import java.util.Scanner;
 
 public class Prescription {
         private String prescID;
@@ -27,7 +26,6 @@ public class Prescription {
 
         // default constructor to initialize values that don't pass condition checks
         Prescription() {
-                this.scanner = new Scanner(System.in);
                 this.prescID = "000";
                 this.firstName = "";
                 this.lastName = "";
