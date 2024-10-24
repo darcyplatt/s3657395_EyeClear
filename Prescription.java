@@ -24,7 +24,6 @@ public class Prescription {
         private String[] remarkTypes = { "Client", "Optometrist" };
         private ArrayList<String> postRemarks = new ArrayList<>();
         private static final HashSet<String> usedIDs = new HashSet<>();
-        private Scanner scanner;
 
         // default constructor to initialize values that don't pass condition checks
         Prescription() {
@@ -42,7 +41,8 @@ public class Prescription {
 
         // method called to set all relevant fields of prescription data and then write
         // them to a TXT file
-        public boolean addPrescription() {
+        public boolean addPrescription(String firstName, String lastName, String address, float sphere, float axis,
+                        float cylinder, String examinationDate, String optometrist) {
                 // If the prescription meets the given conditions,
                 // the information should be added to a TXT file (e.g., presc.txt), and the
                 // function should return true.
@@ -50,17 +50,14 @@ public class Prescription {
                 // the information should not be added to the TXT file, and the function should
                 // return false.
 
-                // take line by line user inputs and pass them through to variable setter
-                // methods
-                Scanner scanner = new Scanner(System.in);
-                setFirstName(scanner.nextLine());
-                setLastName(scanner.nextLine());
-                setAddress(scanner.nextLine());
-                setSphere(scanner.nextFloat());
-                setAxis(scanner.nextFloat());
-                setCylinder(scanner.nextFloat());
-                setDate(scanner.nextLine());
-                setOptometrist(scanner.nextLine());
+                setFirstName(firstName);
+                setLastName(lastName);
+                setAddress(address);
+                setSphere(sphere);
+                setAxis(axis);
+                setCylinder(cylinder);
+                setDate(examinationDate);
+                setOptometrist(optometrist);
 
                 // if all the setter methods return true and fields have been set correctly then
                 // a unique prescID
@@ -170,7 +167,7 @@ public class Prescription {
                 this.prescID = newID.toString();
         }
 
-        // checks if all boolean methods for setting fields for presrcition resolve to
+        // checks if all boolean methods for setting fields for prescription resolve to
         // true, returns false otherwise
         private boolean validPrescription() {
                 return setFirstName(this.firstName) && setLastName(this.lastName) && setAddress(this.address)
@@ -203,18 +200,13 @@ public class Prescription {
         }
 
         // method called to add a remark by either a Client or Optometrist to a TXT file
-        public boolean addRemark() {
+        public boolean addRemark(String type, String text) {
                 // If the remark meets the given conditions,
                 // the information should be added to a TXT file (e.g., remark.txt), and the
                 // function should return true.
                 // If the remark does not meet the given conditions,
                 // the information should not be added to the TXT file, and the function should
                 // return false.
-
-                // take line by line user inputs stores them into two the string variables type
-                // and text
-                String type = scanner.nextLine();
-                String text = scanner.nextLine();
 
                 // checks if the validRemarkType(type) and validRemarkText(text) resolve to true
                 // and the size of the array list postRemark is not already 2
@@ -252,14 +244,6 @@ public class Prescription {
                 } catch (IOException e) {
                         System.out.println("Error writing file");
                         e.printStackTrace();
-                }
-        }
-
-        // method that must be called to close the scanner object after all user input
-        // relevant to the fields for a prescription or a remark are inputted
-        public void close() {
-                if (this.scanner != null) {
-                        this.scanner.close();
                 }
         }
 
