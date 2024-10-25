@@ -1,4 +1,6 @@
 package s3657395_EyeClear;
+
+import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
@@ -128,5 +130,81 @@ class PrescriptionTest {
         assertEquals(false, result, "addRemark should return false for invalid input");
     }
 
+    @Test
+    void validTypeOptometrist_testcase1() {
+        boolean result = prescription.addRemark("Optometrist", "This is a valid remark for the prescription");
+
+        assertEquals(true, result, "addRemark should return true for valid input");
+    }
+
+    @Test
+    void validTypeOptometrist_testcase2() {
+        boolean result = prescription.addRemark("Opto", "This is a valid remark for the prescription");
+
+        assertEquals(false, result, "addRemark should return false for invalid input");
+    }
+
+    @Test
+    void validWordCountLower_testcase1() {
+        boolean result = prescription.addRemark("Optometrist",
+                "This is a valid remark because it is between 4 and 20 words");
+
+        assertEquals(true, result, "addRemark should return true for valid input");
+    }
+
+    @Test
+    void validWordCountLower_testcase2() {
+        boolean result = prescription.addRemark("Optometrist", "Not valid");
+
+        assertEquals(false, result, "addRemark should return false for invalid input");
+    }
+
+    @Test
+    void validWordCountUpper_testcase1() {
+        boolean result = prescription.addRemark("Client",
+                "This is a valid remark because it is between 4 and 20 words");
+
+        assertEquals(true, result, "addRemark should return true for valid input");
+    }
+
+    @Test
+    void validWordCountUpper_testcase2() {
+        boolean result = prescription.addRemark("Client",
+                "This is a valid remark because it is between 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 and 20 words");
+
+        assertEquals(false, result, "addRemark should return false for invalid input");
+    }
+
+    @Test
+    void firstLetterUppercase_testcase1() {
+        boolean result = prescription.addRemark("Client", "Is this a valid remark for the prescription?");
+
+        assertEquals(true, result, "addRemark should return true for valid input");
+    }
+
+    @Test
+    void firstLetterUppercase_testcase2() {
+        boolean result = prescription.addRemark("Client", "iS this a valid remark for the prescription?");
+
+        assertEquals(false, result, "addRemark should return false for invalid input");
+    }
+
+    @Test
+    void validAmountOfRemarks_testcase1() {
+        prescription.addRemark("Client", "This is the first remark added");
+        prescription.addRemark("Opppo", "This is the second remark added");
+        boolean result = prescription.addRemark("Optometrist", "This is the next remark that we are checking");
+
+        assertEquals(true, result, "addRemark should return true because postRemarks size is not > 2");
+    }
+
+    @Test
+    void validAmountOfRemarks_testcase2() {
+        prescription.addRemark("Client", "This is the first remark added");
+        prescription.addRemark("Optometrist", "This is the second remark added");
+        boolean result = prescription.addRemark("Optometrist", "This is the next remark that we are checking");
+
+        assertEquals(false, result, "addRemark should return false because postRemarks is already >= 2");
+    }
 
 }
