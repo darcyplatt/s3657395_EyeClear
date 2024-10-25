@@ -41,13 +41,6 @@ public class Prescription {
         // them to a TXT file
         public boolean addPrescription(String firstName, String lastName, String address, float sphere, float axis,
                         float cylinder, String examinationDate, String optometrist) {
-                // If the prescription meets the given conditions,
-                // the information should be added to a TXT file (e.g., presc.txt), and the
-                // function should return true.
-                // If the prescription's information does not meet the given conditions,
-                // the information should not be added to the TXT file, and the function should
-                // return false.
-
                 setFirstName(firstName);
                 setLastName(lastName);
                 setAddress(address);
@@ -66,9 +59,9 @@ public class Prescription {
                         return true;
                 } else {
                         return false;
-                        //throw new IllegalArgumentException("Invalid prescription values");
+                        // throw new IllegalArgumentException("Invalid prescription values");
                 }
-                //return validPrescription();
+                // return validPrescription();
         }
 
         // checks if passed in firstName is has a minimum of 4 characters and a maximum
@@ -201,13 +194,6 @@ public class Prescription {
 
         // method called to add a remark by either a Client or Optometrist to a TXT file
         public boolean addRemark(String type, String text) {
-                // If the remark meets the given conditions,
-                // the information should be added to a TXT file (e.g., remark.txt), and the
-                // function should return true.
-                // If the remark does not meet the given conditions,
-                // the information should not be added to the TXT file, and the function should
-                // return false.
-
                 // checks if the validRemarkType(type) and validRemarkText(text) resolve to true
                 // and the size of the array list postRemark is not already 2
                 if (validRemarkType(type) && validRemarkText(text) && postRemarks.size() < 2) {
